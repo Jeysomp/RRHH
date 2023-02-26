@@ -1,0 +1,124 @@
+﻿@model RRHH.Models.Empleado
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Empleado</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EmpleadoId" />
+            <div class="form-group">
+                <label asp-for="Codigo" class="control-label"></label>
+                <input asp-for="Codigo" class="form-control" />
+                <span asp-validation-for="Codigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NSS" class="control-label"></label>
+                <input asp-for="NSS" class="form-control" />
+                <span asp-validation-for="NSS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumeroCedula" class="control-label"></label>
+                <input asp-for="NumeroCedula" class="form-control" />
+                <span asp-validation-for="NumeroCedula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrimerNombre" class="control-label"></label>
+                <input asp-for="PrimerNombre" class="form-control" />
+                <span asp-validation-for="PrimerNombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SegundoNombre" class="control-label"></label>
+                <input asp-for="SegundoNombre" class="form-control" />
+                <span asp-validation-for="SegundoNombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrimerApellido" class="control-label"></label>
+                <input asp-for="PrimerApellido" class="form-control" />
+                <span asp-validation-for="PrimerApellido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SegundoApellido" class="control-label"></label>
+                <input asp-for="SegundoApellido" class="form-control" />
+                <span asp-validation-for="SegundoApellido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaNacimiento" class="control-label"></label>
+                <input asp-for="FechaNacimiento" class="form-control" />
+                <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Edad" class="control-label"></label>
+                <input asp-for="Edad" class="form-control" />
+                <span asp-validation-for="Edad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sexo" class="control-label"></label>
+                <input asp-for="Sexo" class="form-control" />
+                <span asp-validation-for="Sexo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion" class="control-label"></label>
+                <input asp-for="Direccion" class="form-control" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefono" class="control-label"></label>
+                <input asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalarioOrdinario" class="control-label"></label>
+                <input asp-for="SalarioOrdinario" class="form-control" />
+                <span asp-validation-for="SalarioOrdinario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaIngreso" class="control-label"></label>
+                <input asp-for="FechaIngreso" class="form-control" />
+                <span asp-validation-for="FechaIngreso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumeroCuentaBanco" class="control-label"></label>
+                <input asp-for="NumeroCuentaBanco" class="form-control" />
+                <span asp-validation-for="NumeroCuentaBanco" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmpleadoTipoId" class="control-label"></label>
+                <select asp-for="EmpleadoTipoId" class="form-control" asp-items="ViewBag.EmpleadoTipoId"></select>
+                <span asp-validation-for="EmpleadoTipoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmpleadoAreaId" class="control-label"></label>
+                <select asp-for="EmpleadoAreaId" class="form-control" asp-items="ViewBag.EmpleadoAreaId"></select>
+                <span asp-validation-for="EmpleadoAreaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmpleadoCargoId" class="control-label"></label>
+                <select asp-for="EmpleadoCargoId" class="form-control" asp-items="ViewBag.EmpleadoCargoId"></select>
+                <span asp-validation-for="EmpleadoCargoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmpleadoEstadoId" class="control-label"></label>
+                <select asp-for="EmpleadoEstadoId" class="form-control" asp-items="ViewBag.EmpleadoEstadoId"></select>
+                <span asp-validation-for="EmpleadoEstadoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

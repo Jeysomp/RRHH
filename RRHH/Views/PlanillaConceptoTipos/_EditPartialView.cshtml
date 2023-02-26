@@ -1,0 +1,39 @@
+﻿@model RRHH.Models.PlanillaConceptoTipo
+
+<div class="modal fade" id="editConceptoTipo" tabindex="-1" role="dialog" aria-labelledby="editConceptoTipoLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="editConceptoTipoLabel">@((ViewData["Operacion"]?.ToString() == "Edit") ? "Modificando ": "Agregando ") tipo de concepto.</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form asp-action="Save">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<input type="hidden" asp-for="PlanillaConceptoTipoId" />
+					<div class="form-group">
+						<label asp-for="Descripcion" class="control-label"></label>
+						<input asp-for="Descripcion" class="form-control" />
+						<span asp-validation-for="Descripcion" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Signo" class="control-label"></label>
+						<input asp-for="Signo" class="form-control" />
+						<span asp-validation-for="Signo" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Orden" class="control-label"></label>
+						<input asp-for="Orden" class="form-control" />
+						<span asp-validation-for="Orden" class="text-danger"></span>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-primary" data-save="modal">Guardar</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<RRHH.Models.PlanillaConceptoTipo>
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Tipos de conceptos de planilla</h1>
+
+<p>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editConceptoTipo" data-url="@Url.Action("Save")">Nuevo</button>
+</p>
+
+<div id="modal-placeholder"></div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Descripcion)</th>
+            <th>@Html.DisplayNameFor(model => model.Signo)</th>
+            <th>@Html.DisplayNameFor(model => model.Orden)</th>
+	        <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+            <td>@Html.DisplayFor(modelItem => item.Signo)</td>
+            <td>@Html.DisplayFor(modelItem => item.Orden)</td>
+            <td>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editConceptoTipo" data-url="@Url.Action("Save", "PlanillaConceptoTipos", new { id = item.PlanillaConceptoTipoId })">Editar</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

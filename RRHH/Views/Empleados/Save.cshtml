@@ -1,0 +1,174 @@
+﻿@model RRHH.Models.Empleado
+
+@{
+    ViewData["Title"] = "Nuevo Empleado";
+}
+<script>
+    function calcularEdad() {
+        var edad = 0;
+        var fechanace = new Date(Date.parse($("#FechaNacimiento").val()));
+        var ahora = new Date;
+        edad = ahora.getFullYear() - fechanace.getFullYear();
+
+        if (ahora.getMonth() < fechanace.getMonth()) {
+            edad--;
+        } else if ((ahora.getMonth() == fechanace.getMonth()) && ((ahora.getDate() < fechanace.getDate() + 1))) {
+            edad--;
+        }
+        $("#Edad").val(edad);
+    };
+</script>
+
+<div class="row">
+    <h4 class="col-md-10">@((ViewData["Operacion"] == "Edit") ? "Modificando el empleado": "Agregando un empleado")</h4>
+    <a class="col-md-2 btn btn-danger" asp-action="Index">Lista de empleados</a>
+</div>
+<hr />
+
+<div class="row">
+    <div>
+        <form asp-action="Save">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EmpleadoId" />
+            <div class="row">
+                <div class="row col-md-6">
+                    <label asp-for="Codigo" class="col-md-5 col-form-label"></label>
+                    <div class="col-md-7">
+                        <input asp-for="Codigo" class="form-control form-control-sm" readonly value=@((ViewData["Operacion"] == "Edit") ? Model.Codigo : ViewData["CodigoSiguiente"])/>
+                        <span asp-validation-for="Codigo" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row col-md-6">
+                    <label asp-for="NSS" class="col-md-5 col-form-label"></label>
+                    <div class="col-md-7">
+                        <input asp-for="NSS" class="form-control form-control-sm" />
+                        <span asp-validation-for="NSS" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row col-md-6">
+                    <label asp-for="NumeroCedula" class="col-md-5 col-form-label"></label>
+                    <div class="col-md-7">
+                        <input asp-for="NumeroCedula" class="form-control form-control-sm" />
+                        <span asp-validation-for="NumeroCedula" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-12">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                        <label asp-for="NombreCompleto" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="PrimerNombre" class="form-control" placeholder="Primer nombre" />
+                    <input asp-for="SegundoNombre" class="form-control" placeholder="Segundo nombre" />
+                    <input asp-for="PrimerApellido" class="form-control" placeholder="Primer apellido" />
+                    <input asp-for="SegundoApellido" class="form-control" placeholder="Segundo apellido" />
+                </div>
+                <div>
+                    <span asp-validation-for="PrimerNombre" class="text-danger"></span>
+                    <span asp-validation-for="SegundoNombre" class="text-danger"></span>
+                    <span asp-validation-for="PrimerApellido" class="text-danger"></span>
+                    <span asp-validation-for="SegundoApellido" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row col-md-6">
+                    <label asp-for="FechaNacimiento" class="col-md-5 col-form-label"></label>
+                    <div class="col-md-7">
+                        <input asp-for="FechaNacimiento" class="form-control form-control-sm" onchange="calcularEdad();" />
+                        <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row col-md-6">
+                    <label asp-for="Edad" class="col-md-5 col-form-label"></label>
+                    <div class="col-md-7">
+                        <input asp-for="Edad" class="form-control form-control-sm" readonly/>
+                        <span asp-validation-for="Edad" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row col-md-6">
+                    <label asp-for="Sexo" class="col-md-5 col-form-label"></label>
+                    <div class="col-md-7">
+                        <select asp-for="Sexo" class="form-select form-select-sm">
+                            <option>Másculino</option>
+                            <option>Femenino</option>
+                        </select>
+                        <span asp-validation-for="Sexo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row col-md-6">
+                    <label asp-for="Telefono" class="col-md-5 col-form-label"></label>
+                    <div class="col-md-7">
+                        <input asp-for="Telefono" class="form-control form-control-sm" aria-label="Dirección del empleado" aria-describedby="Direccion" />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-12">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                        <label asp-for="Direccion" class="input-group-text"></label>
+                    </div>
+                    <textarea asp-for="Direccion" class="form-control form-control-sm"></textarea>
+                    <span asp-validation-for="Direccion" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row col-md-6">
+                    <label asp-for="SalarioOrdinario" class="col-md-5 col-form-label"></label>
+                    <div class="col-md-7">
+                        <input asp-for="SalarioOrdinario" class="form-control form-control-sm" />
+                        <span asp-validation-for="SalarioOrdinario" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row col-md-6">
+                    <label asp-for="FechaIngreso" class="col-md-5 col-form-label"></label>
+                    <div class="col-md-7">
+                        <input asp-for="FechaIngreso" class="form-control form-control-sm" />
+                        <span asp-validation-for="FechaIngreso" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row col-md-6">
+                    <label asp-for="NumeroCuentaBanco" class="col-md-5 col-form-label"></label>
+                    <div class="col-md-7">
+                        <input asp-for="NumeroCuentaBanco" class="form-control form-control-sm" />
+                        <span asp-validation-for="NumeroCuentaBanco" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row col-md-6">
+                    <label asp-for="EmpleadoTipoId" class="col-md-5 col-form-label"></label>
+                    <div class="col-md-7">
+                        <select asp-for="EmpleadoTipoId" class="form-select form-select-sm" asp-items="ViewBag.EmpleadoTipoId"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row col-md-6">
+                    <label asp-for="EmpleadoAreaId" class="col-md-5 col-form-label"></label>
+                    <div class="col-md-7">
+                        <select asp-for="EmpleadoAreaId" class="form-select form-select-sm" asp-items="ViewBag.EmpleadoAreaId"></select>
+                    </div>
+                </div>
+                <div class="row col-md-6">
+                    <label asp-for="EmpleadoCargoId" class="col-md-5 col-form-label-sm"></label>
+                    <div class="col-md-7">
+                        <select asp-for="EmpleadoCargoId" class="form-select form-select-sm" asp-items="ViewBag.EmpleadoCargoId"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

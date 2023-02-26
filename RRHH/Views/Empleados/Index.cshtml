@@ -1,0 +1,129 @@
+﻿@model RRHH.Models.ViewModels.EmpleadoListViewModel
+
+@{
+    ViewData["Title"] = "Empleados";
+}
+
+<div class="row">
+    <div class="col-md-2">
+        @*<a asp-action="Create" class="btn btn-primary">+</a>*@
+        <a asp-action="Save" class="btn btn-primary">+</a>
+    </div>
+    <div class="col-md-10" style="text-align:center;color:darkblue">
+        <h2>Lista de empleados</h2>
+    </div>
+</div>
+<form asp-action="Index">
+    <div class="row col-md-12">
+        <div class="row col-md-5">
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">Filtrar por nombre:</label>
+                </div>
+                <input asp-for="FiltrarNombre" class="form-control" placeholder="Nombre de empleado" />
+            </div>
+        </div>
+        <div class="row col-md-3">
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">Área:</label>
+                </div>
+                <select asp-for="EmpleadoAreaId" class="form-select form-select-sm" asp-items="ViewBag.EmpleadoAreaId" onchange="this.form.submit();">
+                    <option value="-1">Todos</option>
+                </select>
+            </div>
+        </div>
+        <div class="row col-md-3">
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">Tipo:</label>
+                </div>
+                <select asp-for="EmpleadoTipoId" class="form-select form-select-sm" asp-items="ViewBag.EmpleadoTipoId" onchange="this.form.submit();">
+                    <option value="-1">Todos</option>
+                </select>
+            </div>
+        </div>
+        <div class="row col-md-1">
+            <input type="submit" class="btn btn-secondary btn-sm" value="Filtrar" />
+        </div>
+    </div>
+</form>
+
+<table class="table table-sm table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Empleados[0].Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empleados[0].NSS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empleados[0].NumeroCedula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empleados[0].NombreCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empleados[0].SalarioOrdinario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empleados[0].FechaIngreso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empleados[0].NumeroCuentaBanco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empleados[0].EmpleadoTipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empleados[0].EmpleadoArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empleados[0].EmpleadoCargo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empleados[0].EmpleadoEstado)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Empleados) {
+        <tr>
+            <td>
+                <a asp-action="Save" asp-route-id="@item.EmpleadoId">@Html.DisplayFor(modelItem => item.Codigo)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NSS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroCedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalarioOrdinario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaIngreso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroCuentaBanco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpleadoTipo.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpleadoArea.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpleadoCargo.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpleadoEstado.Descripcion)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

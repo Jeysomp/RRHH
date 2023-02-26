@@ -1,0 +1,83 @@
+﻿@model IEnumerable<RRHH.Models.PlanillaConcepto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EsPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EsRetencion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PagaIR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PagaSS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PagaINATEC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EsIR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EsSS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanillaConceptoTipo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EsPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EsRetencion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PagaIR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PagaSS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PagaINATEC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EsIR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EsSS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlanillaConceptoTipo.Descripcion)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PlanillaConceptoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PlanillaConceptoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PlanillaConceptoId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
